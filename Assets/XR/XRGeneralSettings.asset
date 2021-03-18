@@ -69,10 +69,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2dc886499c26824283350fa532d087d, type: 3}
+  m_Script: {fileID: 0}
   m_Name: XRGeneralSettings
   m_EditorClassIdentifier: 
-  Keys: 0700000004000000
-  Values:
-  - {fileID: -4932055248165848719}
-  - {fileID: -5854633182741750689}
