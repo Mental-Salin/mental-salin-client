@@ -630,3 +630,9 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,csharp,android,androidstudio
+
+# Ignore 3rd party libraries
+## Photon
+/[Aa]ssets/Photon/
+## Salin
+/[Aa]ssets/SalinSDK/
