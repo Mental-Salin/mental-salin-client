@@ -634,5 +634,7 @@ fabric.properties
 # Ignore 3rd party libraries
 ## Photon
 /[Aa]ssets/Photon/
+/[Aa]ssets/Photon.meta
 ## Salin
 /[Aa]ssets/SalinSDK/
+/[Aa]ssets/SalinSDK.meta
