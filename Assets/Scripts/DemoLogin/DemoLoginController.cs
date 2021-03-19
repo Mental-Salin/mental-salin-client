@@ -34,18 +34,6 @@ public class DemoLoginController : SalinCallbacks
         LogIn(currentId);
     }
 
-    public override void OnSignUpFail(ErrorCode errorCode)
-    {
-        if (errorCode == ErrorCode.ExistAccount)
-        {
-            Debug.Log($"Already signed up..id:{currentId}");
-            LogIn(currentId);
-            return;
-        }
-        
-        Debug.Log($"Sign up Fail..code:{errorCode}, id:{currentId}");
-    }
-
     private void LogIn(string id)
     {
         AccountManager.Login(id, DemoPasswd);
@@ -57,9 +45,9 @@ public class DemoLoginController : SalinCallbacks
         XRSocialSDK.ConnectToSocialServer();
     }
 
-    public override void OnLogInFail(ErrorCode errorCode)
+    public override void OnAccountError(ErrorCode errorCode)
     {
-        Debug.Log($"Fail to log in... code : {errorCode}");
+        Debug.Log($"Fail to sign up or log in... code : {errorCode}");
     }
     
     public override void OnConnectedSocialServer()

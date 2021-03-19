@@ -631,10 +631,21 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,csharp,android,androidstudio
 
+# Ignore pluging folder
+
+
 # Ignore 3rd party libraries
+## Plugins
+/[Aa]ssets/Plugins/
+/[Aa]ssets/Plugins.meta
 ## Photon
 /[Aa]ssets/Photon/
 /[Aa]ssets/Photon.meta
 ## Salin
 /[Aa]ssets/SalinSDK/
 /[Aa]ssets/SalinSDK.meta
+## Salin demo codes
+/[Aa]ssets/ChatDemo/
+/[Aa]ssets/ChatDemo.meta
+/[Aa]ssets/DemoScene/
+/[Aa]ssets/DemoScene.meta
