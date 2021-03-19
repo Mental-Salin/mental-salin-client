@@ -391,7 +391,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: interviewee
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &327096041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,9 +706,9 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Interviewer
+          m_StringArgument: interviewer
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &680918942
 MonoBehaviour:
   m_ObjectHideFlags: 0

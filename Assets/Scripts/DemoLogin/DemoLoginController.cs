@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class DemoLoginController : SalinCallbacks
 {
-    private const string DemoPasswd = "demotest";
+    private const string DemoPasswd = "demotest";   // NEVER CHANGE THIS
     
     public Canvas canvas;
     public string currentId;
+
+    private RoomInfo demoRoom;
     
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,16 @@ public class DemoLoginController : SalinCallbacks
 
     public void BeginDemo(string id)
     {
+        try
+        {
+            XRSocialSDK.DisconnectSocialServer();
+            AccountManager.LogOut();
+        }
+        catch
+        {
+            // ignored
+        }
+
         currentId = id;
         SignUpDemoAccount();
     }
@@ -41,19 +53,28 @@ public class DemoLoginController : SalinCallbacks
     
     public override void OnLogIn(UserInfo info)
     {
-        Debug.Log($"Log in Success! Id:{info.userID}");
-        XRSocialSDK.ConnectToSocialServer();
+        Debug.Log($"Log in Success! Id:{info.userAccount}, name:{info.userNickname}");
+        XRSocialSDK.ConnectToSocialServer(true);
     }
 
     public override void OnAccountError(ErrorCode errorCode)
     {
-        Debug.Log($"Fail to sign up or log in... code : {errorCode}");
+        if (errorCode == ErrorCode.ExistAccount || ((int) errorCode) == 6003)
+        {
+            Debug.Log($"Already signed up, log in...");
+            LogIn(currentId);
+        }
+        else
+        {
+            Debug.Log($"Fail to sign up or log in... code : {errorCode}");
+        }
     }
     
     public override void OnConnectedSocialServer()
     {
         Debug.Log("Success to connect to the social server.");
-        EnterRoom(currentId);
+        UpdateDemoRoom();
+        EnterRoom();
     }
     
     public override void OnConnectedSocialServerFail(DisconnectCause disconnectCause)
@@ -61,18 +82,29 @@ public class DemoLoginController : SalinCallbacks
         Debug.Log($"Fail to connect to the social server... code : {disconnectCause}");
     }
 
-    private void EnterRoom(string id)
+    private void UpdateDemoRoom()
     {
-        switch (id)
+        demoRoom = XRSocialSDK.GetRoomInfoFromLobby("demo");
+    }
+
+    private void EnterRoom()
+    {
+        if (demoRoom is { })
         {
-            case "interviewee" :
-                XRSocialSDK.CreateRoom("Demo");
+            if (demoRoom.IsOpen && demoRoom.PlayerCount < 2)
+            {
+                XRSocialSDK.JoinRoom("demo");
                 SceneManager.LoadScene("RoomScene");
-                break;
-            case "interviewer" :
-                XRSocialSDK.JoinRoom("Demo");
-                SceneManager.LoadScene("RoomScene");
-                break;
+            }
+            else
+            {
+                Debug.Log($"Fail to enter the room.. demoRoom IsOpen: {demoRoom.IsOpen}, playerCount: {demoRoom.PlayerCount}");
+            }
+        }
+        else
+        {
+            XRSocialSDK.CreateRoom("demo", new RoomOption() {MaxPlayerCount = 2});
+            SceneManager.LoadScene("RoomScene");
         }
     }
 }
