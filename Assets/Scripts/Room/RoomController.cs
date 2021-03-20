@@ -1,5 +1,7 @@
+using System;
 using DefaultNamespace;
 using SalinSDK;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
@@ -64,7 +66,14 @@ public class RoomController : SalinCallbacks
 
     public void StartInterview()
     {
-        XRSocialSDK.SendBroadcastMessage(new RoomStartInterviewMessage());
+        if (roomPlayersState.isIntervieweeWait && roomPlayersState.isInterviewerReady && roomPlayersState.isInterviewerWait)
+        {
+            XRSocialSDK.SendBroadcastMessage(new RoomStartInterviewMessage());
+        }
+        else
+        {
+            Debug.Log("Cannot start the interview: Interviewee is not ready or one of both is not connected in the room.");
+        }
     }
 
     public void LeaveRoom()
