@@ -43,8 +43,8 @@ public class RoomController : SalinCallbacks
         XRSocialSDK.SendBroadcastMessage(userStateMessage);
 
         // set button
-        btnStart.gameObject.SetActive(_userMode == UserMode.Interviewee);
-        btnReady.gameObject.SetActive(_userMode == UserMode.Interviewer);
+        btnStart.gameObject.SetActive(_userMode == UserMode.Interviewer);
+        btnReady.gameObject.SetActive(_userMode == UserMode.Interviewee);
     }
 
     // Update is called once per frame
