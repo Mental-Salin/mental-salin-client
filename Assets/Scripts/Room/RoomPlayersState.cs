@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using DefaultNamespace;
 using SalinSDK;
 using UnityEngine;
@@ -17,6 +18,24 @@ public class RoomPlayersState : SalinCallbacks
     {
         txtInterviewee.color = Color.gray;
         txtInterviewer.color = Color.gray;
+        
+        XRSocialSDK.currentRoom.PlayerList
+            .Values
+            .Where(player => !player.isMyPlayer)
+            .ToList()
+            .ForEach(player => {
+                switch (player.userNickname)
+                {
+                    case Constants.InterviewerId:
+                        isInterviewerWait = true;
+                        txtInterviewer.color = Color.black;
+                        break;
+                    case Constants.IntervieweeId:
+                        isIntervieweeWait = true;
+                        txtInterviewee.color = Color.blue;
+                        break;
+                }
+            });
     }
 
     public override void OnReceiveMessage<T>(T data)

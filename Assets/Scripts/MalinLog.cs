@@ -39,7 +39,7 @@ public class MalinLog : MonoBehaviour
   
     }
 
-    public void ShowLog(string str, float timeSec = 1f)
+    public void ShowLog(string str, float timeSec = 2f)
     {
         _text.GetComponent<Text>().text = str;
         timer = 0;
