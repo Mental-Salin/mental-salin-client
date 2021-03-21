@@ -72,7 +72,7 @@ public class DemoLoginController : SalinCallbacks
 
     public override void OnSignUp()
     {
-        Debug.Log($"Sign up Success! Id:{currentId}");
+        MalinLog.Get().ShowLog($"Sign up Success! Id:{currentId}");
         LogIn(currentId);
     }
 
@@ -83,7 +83,7 @@ public class DemoLoginController : SalinCallbacks
     
     public override void OnLogIn(UserInfo info)
     {
-        Debug.Log($"Log in Success! Id:{info.userAccount}, name:{info.userNickname}");
+        MalinLog.Get().ShowLog($"Log in Success! Id:{info.userAccount}, name:{info.userNickname}");
         XRSocialSDK.ConnectToSocialServer(true);
     }
 
@@ -91,25 +91,25 @@ public class DemoLoginController : SalinCallbacks
     {
         if (errorCode == ErrorCode.ExistAccount || ((int) errorCode) == 6003)
         {
-            Debug.Log($"Already signed up, log in...");
+            MalinLog.Get().ShowLog($"Already signed up, log in...");
             LogIn(currentId);
         }
         else
         {
-            Debug.Log($"Fail to sign up or log in... code : {errorCode}");
+            MalinLog.Get().ShowLog($"Fail to sign up or log in... code : {errorCode}");
         }
     }
     
     public override void OnConnectedSocialServer()
     {
-        Debug.Log("Success to connect to the social server.");
+        MalinLog.Get().ShowLog("Success to connect to the social server.");
         UpdateDemoRoom();
         EnterRoom();
     }
     
     public override void OnConnectedSocialServerFail(DisconnectCause disconnectCause)
     {
-        Debug.Log($"Fail to connect to the social server... code : {disconnectCause}");
+        MalinLog.Get().ShowLog($"Fail to connect to the social server... code : {disconnectCause}");
     }
 
     private void UpdateDemoRoom()
@@ -128,7 +128,7 @@ public class DemoLoginController : SalinCallbacks
             }
             else
             {
-                Debug.Log($"Fail to enter the room.. demoRoom IsOpen: {demoRoom.IsOpen}, playerCount: {demoRoom.PlayerCount}");
+                MalinLog.Get().ShowLog($"Fail to enter the room.. demoRoom IsOpen: {demoRoom.IsOpen}, playerCount: {demoRoom.PlayerCount}");
             }
         }
         else

@@ -14,10 +14,10 @@ public class LaunchController : SalinCallbacks
 
     public override void OnConnectedMainServer(string appToken)
     {
-        Debug.Log("Success to connect to the main server.");
+        MalinLog.Get().ShowLog("Success to connect to the main server.");
 
         if (appToken.Length == 0)
-            Debug.LogWarning("AppToken is Empty! XR social SDK will not work... Please check the Api key and user name.");
+            MalinLog.Get().ShowLog("AppToken is Empty! XR social SDK will not work... Please check the Api key and user name.");
 
         SalinTokens.AppToken = appToken;
         //SceneManager.LoadScene("LoginScene", LoadSceneMode.Single);
@@ -27,6 +27,6 @@ public class LaunchController : SalinCallbacks
 
     public override void OnConnectedMainServerFail(ErrorCode errorCode)
     {
-        Debug.Log($"Fail to connect to the main server... code : {errorCode}");
+        MalinLog.Get().ShowLog($"Fail to connect to the main server... code : {errorCode}");
     }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class CanvasLog : MonoBehaviour
+public class MalinLog : MonoBehaviour
 {
     private GameObject _text;
     
-    private static CanvasLog _instance = null;
+    private static MalinLog _instance = null;
 
-    public static CanvasLog Get()
+    public static MalinLog Get()
     {
         return _instance;
     } 
@@ -45,5 +45,6 @@ public class CanvasLog : MonoBehaviour
         timer = 0;
         disappearedTime = timeSec;
         _text.SetActive(true);
+        Debug.Log($"[Malin] {str}");
     }
 }

@@ -72,7 +72,7 @@ public class RoomController : SalinCallbacks
         }
         else
         {
-            Debug.Log("Cannot start the interview: Interviewee is not ready or one of both is not connected in the room.");
+            MalinLog.Get().ShowLog("Cannot start the interview: Interviewee is not ready or one of both is not connected in the room.");
         }
     }
 
