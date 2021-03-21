@@ -29,6 +29,36 @@ public class RoomPlayersState : SalinCallbacks
         }
     }
 
+    public override void OnPlayerEnteredRoom(Player enterPlayer)
+    {
+        var userMode = enterPlayer.userNickname == Constants.InterviewerId
+            ? UserMode.Interviewer
+            : UserMode.Interviewee;
+        
+        var readyMessage = new RoomUserStateMessage()
+        {
+            isConnected = true,
+            isReady = userMode == UserMode.Interviewer,
+            userMode = userMode
+        };
+        XRSocialSDK.SendBroadcastMessage(readyMessage);
+    }
+
+    public override void OnPlayerLeftRoom(Player leftPlayer)
+    {
+        var userMode = leftPlayer.userNickname == Constants.InterviewerId
+            ? UserMode.Interviewer
+            : UserMode.Interviewee;
+        
+        var readyMessage = new RoomUserStateMessage()
+        {
+            isConnected = false,
+            isReady = false,
+            userMode = userMode
+        };
+        XRSocialSDK.SendBroadcastMessage(readyMessage);
+    }
+
     private void UpdateUserState(RoomUserStateMessage data)
     {
         switch (data.userMode)
