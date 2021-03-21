@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class DemoLoginController : SalinCallbacks
 {
-    private const string DemoPasswd = "demotest";   // NEVER CHANGE THIS
-    
     public Canvas canvas;
     public string currentId;
 
@@ -37,7 +35,7 @@ public class DemoLoginController : SalinCallbacks
 
     private void SignUpDemoAccount()
     {
-        AccountManager.SignUp(currentId, DemoPasswd, currentId);
+        AccountManager.SignUp(currentId, Constants.DemoAccountPw, currentId);
     }
 
     public override void OnSignUp()
@@ -48,7 +46,7 @@ public class DemoLoginController : SalinCallbacks
 
     private void LogIn(string id)
     {
-        AccountManager.Login(id, DemoPasswd);
+        AccountManager.Login(id, Constants.DemoAccountPw);
     }
     
     public override void OnLogIn(UserInfo info)
@@ -84,7 +82,7 @@ public class DemoLoginController : SalinCallbacks
 
     private void UpdateDemoRoom()
     {
-        demoRoom = XRSocialSDK.GetRoomInfoFromLobby("demo");
+        demoRoom = XRSocialSDK.GetRoomInfoFromLobby(Constants.DemoRoomName);
     }
 
     private void EnterRoom()
@@ -93,7 +91,7 @@ public class DemoLoginController : SalinCallbacks
         {
             if (demoRoom.IsOpen && demoRoom.PlayerCount < 2)
             {
-                XRSocialSDK.JoinRoom("demo");
+                XRSocialSDK.JoinRoom(Constants.DemoRoomName);
                 SceneManager.LoadScene("RoomScene");
             }
             else
@@ -103,7 +101,7 @@ public class DemoLoginController : SalinCallbacks
         }
         else
         {
-            XRSocialSDK.CreateRoom("demo", new RoomOption() {MaxPlayerCount = 2});
+            XRSocialSDK.CreateRoom(Constants.DemoRoomName, new RoomOption() {MaxPlayerCount = 2});
             SceneManager.LoadScene("RoomScene");
         }
     }

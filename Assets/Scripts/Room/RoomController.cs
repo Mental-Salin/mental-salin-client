@@ -21,7 +21,7 @@ public class RoomController : SalinCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        _userMode = XRSocialSDK.myPlayer.userNickname == "interviewer" ? UserMode.Interviewer : UserMode.Interviewee;
+        _userMode = XRSocialSDK.myPlayer.userNickname == Constants.InterviewerId ? UserMode.Interviewer : UserMode.Interviewee;
         InitRoom();
     }
 
