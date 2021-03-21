@@ -92,7 +92,7 @@ public class RoomController : SalinCallbacks
     {
         SceneManager.LoadScene("DemoLoginScene");
     }
-    
+
     public override void OnReceiveMessage<T>(T data)
     {
         switch (data)
@@ -106,8 +106,9 @@ public class RoomController : SalinCallbacks
                         false => "Ready"
                     };
                 }
+
                 break;
-            
+
             case RoomStartInterviewMessage startInterviewMessage:
                 SceneManager.LoadScene("InterviewScene");
                 break;

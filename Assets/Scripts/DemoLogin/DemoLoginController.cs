@@ -15,20 +15,52 @@ public class DemoLoginController : SalinCallbacks
     // Start is called before the first frame update
     void Start()
     {
-    }
-
-    public void BeginDemo(string id)
-    {
         try
         {
-            XRSocialSDK.DisconnectSocialServer();
-            AccountManager.LogOut();
+            if (XRSocialSDK.IsConnected_SocialServer)
+                XRSocialSDK.DisconnectSocialServer();
         }
         catch
         {
             // ignored
         }
 
+        try
+        {
+            if (XRSocialSDK.myPlayer != null)
+                AccountManager.LogOut();
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+    private void OnDestroy()
+    {
+        try
+        {
+            if (XRSocialSDK.IsConnected_SocialServer)
+                XRSocialSDK.DisconnectSocialServer();
+        }
+        catch
+        {
+            // ignored
+        }
+
+        try
+        {
+            if (XRSocialSDK.myPlayer != null)
+                AccountManager.LogOut();
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+    public void BeginDemo(string id)
+    {
         currentId = id;
         SignUpDemoAccount();
     }
