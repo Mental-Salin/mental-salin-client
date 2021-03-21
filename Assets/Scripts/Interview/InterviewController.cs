@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SalinSDK;
 using UnityEngine;
 
 public class InterviewController : MonoBehaviour
@@ -14,5 +15,14 @@ public class InterviewController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LogoutAndExit()
+    {
+        XRSocialSDK.LeaveRoom();
+        XRSocialSDK.DisconnectMessageServer();
+        XRSocialSDK.DisconnectSocialServer();;
+        AccountManager.LogOut();
+        Application.Quit();
     }
 }
