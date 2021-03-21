@@ -76,7 +76,7 @@ public class RoomController : SalinCallbacks
         }
     }
 
-    public void LeaveRoom()
+    public void LogoutAndExit()
     {
         var readyMessage = new RoomUserStateMessage()
         {
@@ -86,6 +86,10 @@ public class RoomController : SalinCallbacks
         };
         XRSocialSDK.SendBroadcastMessage(readyMessage);
         XRSocialSDK.LeaveRoom();
+        XRSocialSDK.DisconnectMessageServer();
+        XRSocialSDK.DisconnectSocialServer();
+        AccountManager.LogOut();
+        Application.Quit();
     }
 
     public override void OnLeaveRoom()

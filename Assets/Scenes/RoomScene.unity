@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 1055740784}
   - component: {fileID: 1055740783}
   m_Layer: 5
-  m_Name: btnLeaveRoom
+  m_Name: btnLogoutExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1082,7 +1082,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1497294209}
         m_TargetAssemblyTypeName: RoomController, Assembly-CSharp
-        m_MethodName: LeaveRoom
+        m_MethodName: LogoutAndExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2303,9 +2303,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Leave
+  m_Text: 'Logout
 
-    Room'
+    and
+
+    Exit'
 --- !u!222 &1858443310
 CanvasRenderer:
   m_ObjectHideFlags: 0
