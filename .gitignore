@@ -650,6 +650,9 @@ fabric.properties
 /[Aa]ssets/ChatDemo.meta
 /[Aa]ssets/DemoScene/
 /[Aa]ssets/DemoScene.meta
-## Avatar Maker
-/[Aa]ssets/itseez3d/
-/[Aa]ssets/itseez3d.meta
+## TextMesh Pro
+/[Aa]ssets/TextMesh Pro/
+/[Aa]ssets/TextMesh Pro.meta
+## AR face Assets
+/[Aa]ssets/AR face Assets/
+/[Aa]ssets/AR face Assets.meta
